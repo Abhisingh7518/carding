@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html, body, #root {
+    height: 100%;
+  }
+
+  body {
+    /* Keep explicit font-family and leverage Tailwind utilities for base styles */
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    @apply m-0 bg-slate-50 text-slate-900 antialiased;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(270deg, #6d28d9, #2563eb, #10b981, #f59e0b, #ef4444);
+  background-size: 400% 400%;
+  animation: gradientShift 18s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Mono-color animated gradients (no color mix) */
+.animated-gradient-mono--purple {
+  background: linear-gradient(270deg, #6d28d9, #7c3aed, #6d28d9);
+  background-size: 300% 300%;
+  animation: gradientShift 16s ease infinite;
+}
+
+.brand-auth-surface--gradient-mono--purple {
+  background-image: linear-gradient(270deg, rgba(124,58,237,0.95), rgba(109,40,217,0.95), rgba(124,58,237,0.95)) !important;
+  background-size: 300% 300% !important;
+  animation: gradientShift 16s ease infinite !important;
+  border: 1px solid var(--brand-border);
+  color: white;
+}
+
+/* Apply animated gradient to whole page */
+html, body, #root {
+  min-height: 100%;
+}
+body {
+  background: linear-gradient(270deg, #6d28d9, #2563eb, #10b981, #f59e0b, #ef4444) !important;
+  background-size: 400% 400% !important;
+  animation: gradientShift 18s ease infinite !important;
+}
+
+/* ================= Brand Auth Theme (shared by Login/Signup) ================ */
+:root {
+  --brand-red: #dc2626;          /* red-600 */
+  --brand-red-500: #ef4444;      /* red-500 */
+  --brand-purple: #7c3aed;       /* purple-600 */
+  --brand-surface: rgba(255,255,255,0.04);
+  --brand-card: rgba(20,20,28,0.85);
+  --brand-border: rgba(255,255,255,0.1);
+  --brand-muted: rgba(255,255,255,0.7);
+  --brand-dim: rgba(255,255,255,0.4);
+  --brand-bg-start: #2b0f12;     /* deep red tint */
+  --brand-bg-mid: #120e17;       /* purple-black */
+  --brand-bg-end: #0b0b12;       /* near black */
+}
+
+.brand-auth-bg {
+  background-image: linear-gradient(to bottom right, var(--brand-bg-start), var(--brand-bg-mid), var(--brand-bg-end));
+}
+
+.brand-auth-container {
+  background: var(--brand-surface);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  border: 1px solid var(--brand-border);
+}
+
+.brand-auth-surface {
+  background: var(--brand-card);
+  border: 1px solid var(--brand-border);
+  color: white;
+}
+
+/* Gradient variant for auth form surface to match marketplace */
+.brand-auth-surface--gradient {
+  background-image: linear-gradient(270deg, #6d28d9, #2563eb, #10b981, #f59e0b, #ef4444) !important;
+  background-size: 400% 400% !important;
+  animation: gradientShift 18s ease infinite !important;
+  border: 1px solid var(--brand-border);
+  color: white;
+}
+
+.brand-input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--brand-border);
+  color: white;
+}
+.brand-input::placeholder { color: rgba(255,255,255,0.4); }
+
+.brand-label { color: rgba(255,255,255,0.8); }
+.brand-muted { color: var(--brand-muted); }
+.brand-dim { color: var(--brand-dim); }
+
+.brand-button {
+  background-image: linear-gradient(to right, var(--brand-red), var(--brand-purple));
+  color: white;
+}
+.brand-button:hover {
+  background-image: linear-gradient(to right, var(--brand-red-500), #8b5cf6);
+}
+
+.brand-border { border-color: var(--brand-border); }
+.brand-panel-gradient { background-image: linear-gradient(to bottom right, rgba(220,38,38,0.2), transparent, rgba(126,34,206,0.1)); }
+
+/* ================= Auth Animations (shared by Login/Signup) ================ */
+.auth-fade-in {
+  animation: fadeInUp 500ms ease both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate3d(0, 10px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+.auth-pop {
+  animation: popIn 420ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both;
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.98); }
+  60% { opacity: 1; transform: scale(1.005); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Floating gradient blobs for visual interest */
+.auth-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(24px);
+  opacity: 0.35;
+  animation: floatBlob 12s ease-in-out infinite;
+  background: radial-gradient(circle at 30% 30%, rgba(124,58,237,0.8), rgba(220,38,38,0.6), transparent 60%);
+}
+.auth-blob.blob-2 {
+  animation-delay: -6s;
+  background: radial-gradient(circle at 70% 70%, rgba(34,197,94,0.6), rgba(59,130,246,0.6), transparent 60%);
+}
+@keyframes floatBlob {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(10px, -12px, 0) scale(1.05); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+/* Gradient heading text */
+.gradient-text {
+  background: linear-gradient(90deg, #ef4444, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Subtle divider */
+.auth-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+}
+
+/* Link style */
+.brand-link {
+  color: #fca5a5; /* red-300 */
+}
+.brand-link:hover { color: #f87171; }
+
+/* Input focus glow */
+.brand-input:focus {
+  box-shadow: 0 0 0 2px rgba(239,68,68,0.35), 0 10px 20px rgba(0,0,0,0.25);
+  border-color: rgba(239,68,68,0.6);
+}
+
+/* Animated gradient text for stylish brand highlight */
+.gradient-text-animated {
+  background: linear-gradient(90deg, #22c55e, #111827, #f59e0b, #22c55e);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: textGradientShift 6s ease infinite;
+  text-shadow: 0 0 8px rgba(34,197,94,0.35), 0 0 14px rgba(245,158,11,0.25);
+}
+
+@keyframes textGradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
