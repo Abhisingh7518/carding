@@ -38,6 +38,7 @@ app.use('/api/cards', require('./routes/cards'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/pay', paymentsRouter);
+app.get('/', (req, res) => {res.send({activeStatus: true,error:false})})
 
 // Start
 // At the bottom of the file
