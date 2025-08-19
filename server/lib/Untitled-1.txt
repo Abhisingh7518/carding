@@ -1,0 +1,4 @@
+// Replace <username>, <password>, <cluster-url>, and <databaseName> with your details
+const uri = "mongodb+srv://<username>:<password>@<cluster-url>/<databaseName>?retryWrites=true&w=majority";
+
+use('<databaseName>');

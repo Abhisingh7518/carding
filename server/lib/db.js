@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 async function connectDB() {
   // Use localhost instead of 127.0.0.1 for better compatibility
-  const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/cardhavi';
+  const uri = process.env.MONGODB_URI || 'mongodb+srv://shalusingh53666:vUC5AJFta4Ad1I7H@cluster0.pgbwzzf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
   
   // Enable Mongoose debug mode
   mongoose.set('debug', true);
